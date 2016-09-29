@@ -1,7 +1,7 @@
 angular.module('wz', ['ionic', 'jett.ionic.filter.bar', 'onezone-datepicker'])
     .run(function ($ionicPlatform, $http, $rootScope) {
         $rootScope.platform = ionic.Platform.platform();
-        $http.defaults.headers.common.token = 'wz';
+        $http.defaults.headers.common.token = 'admin';
         $rootScope.$on('$ionicView.beforeEnter', function() {
             $(".loading").show();
         });
