@@ -1,0 +1,27 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">人员选择</h1>
+        <button class="button  button-icon icon ion-ios-close-empty" ng-click="closeUserModal()"></button>
+    </ion-header-bar>
+    <div class="bar bar-subheader item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="在此输入搜索内容">
+        </label>
+        <button class="button button-clear">搜索</button>
+    </div>
+    <ion-content class="has-subheader">
+        <div class="list">
+            <a class="item item-avatar item-icon-right" href="#" ng-repeat="item in list" ng-click="doSelect(item)">
+                <img src="../erp/img/anonym.jpg">
+                <h2 ng-bind="item.name"></h2>
+                <span ng-bind="item.userGroup+' '+item.userRole"></span>
+                <i class="icon ion-checkmark positive" ng-if="item.flagSelect"></i>
+            </a>
+        </div>
+        <ion-infinite-scroll ng-if="getFlagInfinite()" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="bar-positive">
+        <div class="title" ng-click="doConfirm()">确定</div>
+    </ion-footer-bar>
+</ion-modal-view>

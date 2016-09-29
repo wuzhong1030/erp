@@ -1,0 +1,9 @@
+<ion-popover-view>
+    <ion-content>
+        <div class="list">
+            <a href="#" class="item item-icon-left" ng-repeat="item in list track by $index" ng-click="doSelect(item)">
+                {{item[displayField]}}
+            </a>
+        </div>
+    </ion-content>
+</ion-popover-view>

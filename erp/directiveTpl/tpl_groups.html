@@ -1,0 +1,31 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">部门选择</h1>
+        <button class="button  button-icon icon ion-ios-close-empty" ng-click="closeGroupModal()"></button>
+    </ion-header-bar>
+    <ion-content class="gray-bg scroll-content">
+        <div class="list">
+            <div ng-repeat="item in list">
+                <div class="item item-icon-left item-icon-right" ng-click="doSelect(item)">
+                    <i class="icon ion-ios-plus-empty positive" ng-if="map[item.id]" ng-click="$event.stopPropagation();item.flagShow=true"></i>
+                    <h2 ng-bind="item.name" class="ng-binding"></h2>
+                    <i class="icon ion-checkmark positive" ng-if="item.flagSelect"></i>
+                </div>
+                <div ng-if="map[item.id]&&item.flagShow" ng-include="'group.tpl.html'" ng-init="currentItem=map[item.id]"></div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="bar-positive">
+        <div class="title" ng-click="doConfirm()">确定</div>
+    </ion-footer-bar>
+</ion-modal-view>
+<script id="group.tpl.html" type="text/ng-template">
+    <div style="margin-left:15px" ng-repeat="item in currentItem">
+        <div class="item item-icon-left item-icon-right" ng-click="doSelect(item)">
+            <i class="icon ion-ios-plus-empty positive" ng-if="map[item.id]" ng-click="$event.stopPropagation();item.flagShow=true"></i>
+            <h2 ng-bind="item.name" class="ng-binding"></h2>
+            <i class="icon ion-checkmark positive" ng-if="item.flagSelect"></i>
+        </div>
+        <div ng-if="map[item.id]&&item.flagShow" ng-include="'group.tpl.html'" ng-init="currentItem=map[item.id]"></div>
+    </div>
+</script>

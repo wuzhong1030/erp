@@ -1,0 +1,118 @@
+<ion-view view-title="请购单">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-ios-search" ng-click="showFilterBar()"></button>
+        <button class="button button-icon icon ion-ios-plus-empty" ng-click="openModal()"></button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+            <ion-item ng-repeat="item in items" item="item" href="#/item/{{item.id}}" class="item item-icon-right">
+                Item {{ item.id }}
+                <i class="icon ion-ios-arrow-right"></i>
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
+                </ion-delete-button>
+                <ion-option-button class="button-assertive" ng-click="edit(item)">
+                    编辑
+                </ion-option-button>
+                <ion-option-button class="button-calm" ng-click="share(item)">
+                    分享
+                </ion-option-button>
+                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+<script id="buyRequest_modal.tpl.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar align-title="center" class="bar-balanced">
+            <h1 class="title">添加请购单</h1>
+            <button class="button button-icon icon ion-ios-close-empty" ng-click="closeModal()"></button>
+        </ion-header-bar>
+        <ion-content class="has-header padding">
+            <c-no label="QG" output="formData.no" preset="{{preset.no}}"></c-no>
+            <c-calendar label="请购日期" preset="formData.preset" output="formData.output"></c-calendar>
+            <c-model label="仓库" api-src="/erp/repository/listAll" output="st"></c-model>
+            <c-user output="member"></c-user>
+            <c-group output="group"></c-group>
+            <c-dictionary label="单据类别" preset="preset.billType" input-src="djlb" output="formData.billType"></c-dictionary>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">备注</span>
+                    <input type="text" ng-model="formData.username">
+                </label>
+            </div>
+            <ul class="list">
+                <li class="item item-checkbox">
+                    <label class="checkbox checkbox-assertive">
+                        <input type="checkbox">
+                    </label>
+                    Apples
+                </li>
+                <li class="item item-checkbox">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                    </label>
+                    Oranges
+                </li>
+                <li class="item item-checkbox checkbox-energized">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                    </label>
+                    Lemons
+                </li>
+            </ul>
+            <ul class="list">
+                <li class="item item-toggle">
+                    Bluetooth
+                    <label class="toggle toggle-positive">
+                        <input type="checkbox">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+            <div class="list">
+                <ion-scroll direction="x" class="scroll-view ionic-scroll scroll-x">
+                    <table class="table table-detail table-bordered">
+                        <thead>
+                            <tr>
+                                <th>货品编号</th>
+                                <th>货品名称</th>
+                                <th>规格</th>
+                                <th>仓库</th>
+                                <th>单位</th>
+                                <th>请购总数</th>
+                                <th>单价</th>
+                                <th>金额</th>
+                                <th>预交日期</th>
+                                <th>供应商</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                                <td>xxxxxxxx</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ion-scroll>
+            </div>
+        </ion-content>
+        <ion-footer-bar class="bar bar-footer has-tabs">
+            <div class="button-bar">
+                <button class="button button-balanced" ng-click="doSubmit(formData)">提交</button>
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+
+</script>
